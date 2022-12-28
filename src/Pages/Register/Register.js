@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
+import { regiterRoute } from '../../Utilities/APIRoutes';
 
 const Register = () => {
 
@@ -17,8 +20,20 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+
+                saveUser(name, email);
             }).catch(err => console.error(err));
     };
+
+    const saveUser = (name, email) => {
+        const { data } = axios.post(regiterRoute, {
+            username: name,
+            email
+        });
+
+        toast.success('register success');
+    };
+
     return (
         <div className='flex items-center justify-center h-screen dark:bg-gray-700'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
@@ -29,8 +44,8 @@ const Register = () => {
                         <input type="text" name="name" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="username" className="block dark:text-gray-400">Username</label>
-                        <input type="text" name="email" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                        <label htmlFor="username" className="block dark:text-gray-400">Email</label>
+                        <input type="text" name="email" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-400">Password</label>
