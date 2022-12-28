@@ -25,8 +25,8 @@ const Register = () => {
             }).catch(err => console.error(err));
     };
 
-    const saveUser = (name, email) => {
-        const { data } = axios.post(regiterRoute, {
+    const saveUser = async (name, email) => {
+        const { data } = await axios.post(regiterRoute, {
             username: name,
             email
         });
