@@ -1,16 +1,21 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { addTaskRoute } from '../../Utilities/APIRoutes';
 
 const AddTask = () => {
+
+    const { user } = useContext(AuthContext);
+
 
     const handleAddTak = async (e) => {
         e.preventDefault();
         const task = e.target.task.value;
 
         const { data } = await axios.post(addTaskRoute, {
-            task
+            task,
+            email: user.email
         });
 
         if (data.status === true) {
