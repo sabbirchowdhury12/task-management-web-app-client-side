@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Loading from '../../components/Loading/Loading';
 import UpdateTaskModal from '../../components/UpdateTaskModal/UpdateTaskModal';
@@ -11,7 +12,7 @@ const MyTask = () => {
 
     const { user } = useContext(AuthContext);
     const [task, setTask] = useState(null);
-    const [showModal, setShowModal] = React.useState(false);
+    const navigate = useNavigate();
     // const data = axios.get(myTaskRoute);
     const { data: tasks = [], isLoading, refetch } = useQuery({
         queryKey: ['tasks', user?.email],
@@ -29,9 +30,11 @@ const MyTask = () => {
     const handleComplete = async (id) => {
         const { data } = await axios.post(`${completeTaskRoute}/${id}`);
 
+
         if (data.isComplete === false) {
             toast.success('done');
             refetch();
+            navigate('/completetask');
         } else {
             toast.error('error');
         }

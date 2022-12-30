@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { addTaskRoute } from '../../Utilities/APIRoutes';
 
 const AddTask = () => {
 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
     const handleAddTak = async (e) => {
@@ -21,6 +23,7 @@ const AddTask = () => {
         if (data.status === true) {
             toast.success('add done');
             e.target.reset();
+            navigate('/mytask');
         } else {
             toast.error('something wromg. try again');
         }
