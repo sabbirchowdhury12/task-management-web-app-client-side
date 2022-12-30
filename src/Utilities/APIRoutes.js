@@ -4,3 +4,7 @@ export const addTaskRoute = `${host}/api/addtask`;
 export const myTaskRoute = `${host}/api/mytask`;
 export const completeTaskRoute = `${host}/api/mytask`;
 export const deleteTaskRoute = `${host}/api/mytask`;
+export const allCompleteTaskRoute = `${host}/api/completetask`;
+export const deleteCompleteTaskRoute = `${host}/api/completetask`;
+export const inCompleteTaskRoute = `${host}/api/completetask`;
+export const updateTaskRoute = `${host}/api/updatetask`;
