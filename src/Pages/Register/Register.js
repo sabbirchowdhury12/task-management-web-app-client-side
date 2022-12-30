@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -7,7 +7,8 @@ import { regiterRoute } from '../../Utilities/APIRoutes';
 
 const Register = () => {
 
-    const { createUserWithEmail } = useContext(AuthContext);
+    const { createUserWithEmail, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,9 +20,19 @@ const Register = () => {
         createUserWithEmail(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                toast.success('register success');
 
-                saveUser(name, email);
+                const userInfo = {
+                    displayName: name
+                };
+                updateUser(userInfo)
+                    .then((result) => {
+                        saveUser(name, email);
+                    }).catch(error => {
+                        console.error(error);
+                    });
+
+
             }).catch(err => console.error(err));
     };
 
@@ -31,7 +42,7 @@ const Register = () => {
             email
         });
 
-        toast.success('register success');
+        navigate('/');
     };
 
     return (

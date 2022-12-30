@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Loading from '../../components/Loading/Loading';
-import { allCompleteTaskRoute, completeTaskRoute, deleteCompleteTaskRoute, inCompleteTaskRoute } from '../../Utilities/APIRoutes';
+import { allCompleteTaskRoute, deleteCompleteTaskRoute, inCompleteTaskRoute } from '../../Utilities/APIRoutes';
 
 const CompleteTask = () => {
 
@@ -50,7 +50,7 @@ const CompleteTask = () => {
 
 
     return (
-        <div>
+        <div className='max-w-screen-xl px-4 py-2 w-full text-center'>
             {
                 !tasks.length &&
                 <p>No Task Available</p>
@@ -58,8 +58,8 @@ const CompleteTask = () => {
             {
                 tasks.map(task => {
 
-                    return <div key={task._id} className="flex shadow-md gap-6 rounded-lg overflow-hidden divide-x max-w-2xl dark:bg-gray-900 dark:text-gray-100 divide-gray-700 mt-5">
-                        <div className="self-stretch flex items-center px-3 flex-shrink-0 dark:bg-gray-700 dark:text-violet-400">
+                    return <div key={task._id} className="flex flex-col sm:flex-row w-full text-center shadow-md  rounded-lg overflow-hidden divide-x max-w-2xl dark:bg-gray-900 dark:text-gray-100 divide-gray-700 mt-5">
+                        <div className="self-stretch flex items-center px-3 flex-shrink-0  justify-center py-1 dark:bg-gray-700 dark:text-violet-400">
                             <button onClick={() => handleDelete(task._id)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-8 w-8">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -69,7 +69,7 @@ const CompleteTask = () => {
                         <div className="flex flex-1 flex-col p-4 border-l-8 dark:border-violet-400">
                             <span className="text-2xl">{task.task}</span>
                         </div>
-                        <button onClick={() => handleComplete(task._id)} className="px-4 flex items-center text-xs uppercase tracking-wide dark:text-gray-400 dark:border-gray-700">Incomplete</button>
+                        <button onClick={() => handleComplete(task._id)} className="px-4 justify-center py-1 flex items-center text-xs uppercase tracking-wide dark:text-gray-400 dark:border-gray-700">Incomplete</button>
                     </div>;
 
                 })
