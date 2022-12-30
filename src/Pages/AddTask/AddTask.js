@@ -28,15 +28,15 @@ const AddTask = () => {
     return (
         <div>
             <h3 className='text-center'>Add Tour Task</h3>
-            <div className=" max-w-screen-xl px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32  dark:text-gray-800">
+            <div className=" max-w-screen-xl px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32  text-gray-800">
 
                 <form onSubmit={handleAddTak} className="space-y-6 ng-untouched ng-pristine ng-valid">
 
 
-                    <input id="name" name='task' type="text" placeholder="Add a new Task" className="w-full p-3 rounded dark:text-gray-800" required />
+                    <input id="name" name='task' type="text" placeholder="Add a new Task" className="w-full p-3 rounded text-gray-800" required />
 
 
-                    <button type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-400 dark:text-gray-900">Add Task</button>
+                    <button type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-violet-400 text-gray-900">Add Task</button>
                 </form>
             </div>
         </div>
